@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7813709321779497187}
   - component: {fileID: 5806319700548695803}
   - component: {fileID: 3533684957462587693}
+  - component: {fileID: 7843644094461134834}
   m_Layer: 0
   m_Name: DislikeBullet
   m_TagString: Untagged
@@ -123,3 +124,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7843644094461134834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017736304210984104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6335a11bb44b14da41df2c41ce8bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

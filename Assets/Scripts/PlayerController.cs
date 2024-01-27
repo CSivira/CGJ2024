@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+    
     public Rigidbody2D theRb;
 
     public float moveSpeed = 5f;
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (instance == null) instance = this;
     }
 
     // Update is called once per frame

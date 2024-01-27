@@ -227,8 +227,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 879372080}
-  - component: {fileID: 879372079}
   - component: {fileID: 879372081}
+  - component: {fileID: 879372082}
   m_Layer: 0
   m_Name: Slayer
   m_TagString: Untagged
@@ -236,18 +236,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &879372079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879372078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280d91514ed1549439380f2ab1df24db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &879372080
 Transform:
   m_ObjectHideFlags: 0
@@ -273,9 +261,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 879372078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280d91514ed1549439380f2ab1df24db, type: 3}
+  m_Script: {fileID: 11500000, guid: e9e23480a62b29f42bf17e5edf3f3560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theRb: {fileID: 879372082}
+  moveSpeed: 5
+  mouseSensitivity: 5
+  viewCam: {fileID: 1728383156}
+  bulletImpact: {fileID: 1017736304210984104, guid: 1e081fc3a4f2aa14ca7c71d6d7aa434a, type: 3}
+--- !u!50 &879372082
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879372078}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1295142551
 GameObject:
   m_ObjectHideFlags: 0
