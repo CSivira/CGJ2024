@@ -1,9 +1,24 @@
 using UnityEngine;
 using UnityEngine.AI;
-    
-public class MoveTo : MonoBehaviour {
+using UnityEngine.UIElements;
+
+public class MoveTo : MonoBehaviour
+{
+    public Transform target;
+
+    public void setTarget(Transform t)
+    {
+        target = t;
+    }
+
     void Start () {
+
+        if (target == null)
+        {
+            target = transform;
+        }
+
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = Target.instance.transform.position;
+        agent.destination = target.position;
     }
 }
