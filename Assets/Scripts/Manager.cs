@@ -6,14 +6,21 @@ using UnityEngine.UIElements;
 
 public class Manager : MonoBehaviour
 {
+    public static Manager instance;
+    
     public GameObject[] targets;
     public int numMemes;
 
     public GameObject enemyPrefab;
     
+    // Metrics
+    private static int memeScapeCount = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null) instance = this;
+        
         if (numMemes.IsUnityNull()) numMemes = 1;
         StartCoroutine(SpawnCoroutine());
     }
@@ -38,5 +45,11 @@ public class Manager : MonoBehaviour
             count--;
             yield return new WaitForSeconds(0.25f);
         }
+    }
+
+    public static void memeScaped()
+    {
+        memeScapeCount++;
+        Debug.Log(memeScapeCount);
     }
 }
