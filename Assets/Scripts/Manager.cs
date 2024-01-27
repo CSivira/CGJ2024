@@ -31,6 +31,10 @@ public class Manager : MonoBehaviour
         {
             Vector3 randomPos = new Vector3(12 + 1, Random.Range(-9, 10), -1);
             GameObject meme = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+
+            Transform randomTarget = targets[Random.Range(0, targets.Length)].transform;
+            meme.GetComponent<MoveTo>().setTarget(randomTarget);
+            
             count--;
             yield return new WaitForSeconds(0.25f);
         }
