@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public Camera viewCam;
 
     public GameObject bulletImpact;
+
+    [SerializeField] private Cooldown cooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,15 +42,22 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - _mouseInput.x);
         // viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, _mouseInput.y, 0f));
         
+        if (cooldown.IsCoolingDown) return;
         //shooting
         if (Input.GetMouseButton(0))
         {
+            
             Ray ray = viewCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 //Debug.Log("I'm looking at "+ hit.transform.name);
-                Instantiate(bulletImpact, hit.point, transform.rotation);
+                if (hit.transform.tag == "Enemy")
+                {
+                    Instantiate(bulletImpact, hit.point, transform.rotation);
+                    hit.transform.parent.GetComponent<EnemyController>().TakeDamage();
+                    cooldown.StartCoolDown();
+                }
             }
             else
             {
