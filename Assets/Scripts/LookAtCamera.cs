@@ -11,6 +11,7 @@ public class LookAtCamera : MonoBehaviour
     {
         theSR = GetComponent<SpriteRenderer>();
         theSR.flipX = true;
+        theSR.flipY = true;
     }
 
     // Update is called once per frame
