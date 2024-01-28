@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletImpact;
 
     [SerializeField] private Cooldown cooldown;
+    
+    [SerializeField] AudioClip piunSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,9 @@ public class PlayerController : MonoBehaviour
                     Instantiate(bulletImpact, hit.point, transform.rotation);
                     hit.transform.parent.GetComponent<EnemyController>().TakeDamage();
                     cooldown.StartCoolDown();
+                    
+                    GetComponent<AudioSource>().clip = piunSound;
+                    GetComponent<AudioSource>().Play();
                 }
             }
             /*else

@@ -30,21 +30,23 @@ public class UIManager : MonoBehaviour
     //     }
     // }
 
-    public void HideTitle()
+    public void setTitle(bool state)
     {
-        titleScreen.SetActive(false);
-        UIScreen.SetActive(true);
+        titleScreen.SetActive(state);
     }
 
-    public void ShowWin()
+    public void setWin(bool state)
     {
-        UIScreen.SetActive(false);
-        winScreen.SetActive(true);
+        winScreen.SetActive(state);
     }
 
-    public void ShowGameOver()
+    public void setLose(bool state)
     {
-        UIScreen.SetActive(false);
-        gameOverScreen.SetActive(true);
+        gameOverScreen.SetActive(state);
+    }
+
+    public void setGame(bool state)
+    {
+        UIScreen.SetActive(state);
     }
 }

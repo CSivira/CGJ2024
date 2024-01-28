@@ -8,6 +8,9 @@ public class EnemyController : MonoBehaviour
     public int id;
     public int health = 3;
 
+    [SerializeField] AudioClip eauSound;
+    [SerializeField] AudioClip pushSound;
+    
     public GameObject explosion;
     // Start is called before the first frame update
     void Start()
@@ -26,10 +29,15 @@ public class EnemyController : MonoBehaviour
         health--;
         if (health <= 0)
         {
+            GetComponent<AudioSource>().clip = eauSound;
+            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().clip = pushSound;
+            GetComponent<AudioSource>().Play();
+
+            Manager.notifyDead();
             Manager.
             Destroy(gameObject);
             Instantiate(explosion, transform.position, transform.rotation);
-            Manager.notifyDead();
         }
     }
 

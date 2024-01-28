@@ -27,11 +27,20 @@ public class Manager : MonoBehaviour
     private static int memeScapeCount = 0;
     private static int memeDeadCount = 0;
     
+    [SerializeField] AudioClip MenuSong;
+    [SerializeField] AudioClip GameSongLoop;
+    [SerializeField] AudioClip WinSong;
+    [SerializeField] AudioClip FailSong;
+    
     // Start is called before the first frame update
     void Start()
     {
         if (instance == null) instance = this;
 
+        GetComponent<AudioSource>().clip = MenuSong;
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().loop = true;
+        
         stage = STAGE.MENU;
     }
     
@@ -45,15 +54,31 @@ public class Manager : MonoBehaviour
         switch (stage)
         {
             case STAGE.MENU:
+                UIManager.instance.setTitle(true);
+                UIManager.instance.setGame(false);
+                UIManager.instance.setWin(false);
+                UIManager.instance.setLose(false);
                 break;
             case STAGE.GAME:
+                UIManager.instance.setTitle(false);
+                UIManager.instance.setGame(true);
+                UIManager.instance.setWin(false);
+                UIManager.instance.setLose(false);
                 break;
             case STAGE.WIN:
+                UIManager.instance.setTitle(false);
+                UIManager.instance.setGame(false);
+                UIManager.instance.setWin(true);
+                UIManager.instance.setLose(false);
                 break;
             case STAGE.LOSE:
+                UIManager.instance.setTitle(false);
+                UIManager.instance.setGame(false);
+                UIManager.instance.setWin(false);
+                UIManager.instance.setLose(true);
                 break;
         }
-
+        
         //Menu condition
         if (stage.Equals(STAGE.WIN) || stage.Equals(STAGE.LOSE) && Input.GetKeyDown("space")) {
             Menu();
@@ -107,24 +132,30 @@ public class Manager : MonoBehaviour
     public static void memeScaped()
     {
         memeScapeCount++;
-        Debug.Log(memeScapeCount);
     }
 
     public static void notifyDead()
     {
         memeDeadCount++;
+        Debug.Log(memeScapeCount);
     }
 
     private void Win()
     {
         stage = STAGE.WIN;
         Debug.Log("Win");
+        
+        GetComponent<AudioSource>().clip = WinSong;
+        GetComponent<AudioSource>().Play();
     }
 
     private void Lose()
     {
         stage = STAGE.LOSE;
         Debug.Log("Lose");
+        
+        GetComponent<AudioSource>().clip = FailSong;
+        GetComponent<AudioSource>().Play();
     }
 
     private void Menu()
@@ -136,6 +167,11 @@ public class Manager : MonoBehaviour
     private void Create()
     {
         stage = STAGE.GAME;
+        
+        GetComponent<AudioSource>().clip = GameSongLoop;
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().loop = true;
+        
         if (!gameWasCreated)
         {
             StartCoroutine(SpawnCoroutine());
