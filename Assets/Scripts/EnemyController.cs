@@ -42,13 +42,4 @@ public class EnemyController : MonoBehaviour
     {
         return id;
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.tag == "Finish")
-        {
-            Destroy(gameObject);
-            // Posible animacion de entrar al internet
-        }
-    }
 }
