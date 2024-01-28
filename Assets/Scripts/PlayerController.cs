@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
                     cooldown.StartCoolDown();
                 }
             }
-            else
+            /*else
             {
                 Debug.Log("I'm looking at nothing");
-            }
+            }*/
         }
     }
 }
