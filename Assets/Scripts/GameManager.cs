@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(PlayGameSong());
+        GetComponent<AudioSource>().clip = GameSongLoop;
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().loop = true;
         // UIManager.instance.HideTitle();
     }
 
@@ -47,12 +49,5 @@ public class GameManager : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene("Game");
-    }
- 
-    IEnumerator PlayGameSong()
-    {
-        GetComponent<AudioSource>().clip = GameSongLoop;
-        GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().loop = true;
     }
 }
