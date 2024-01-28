@@ -16,8 +16,11 @@ public class Internet : MonoBehaviour
        
     }
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
-        Manager.memeScaped();
+        if (col.transform.tag == "Enemy")
+        {
+            Manager.memeScaped();
+        }
     }
 }
