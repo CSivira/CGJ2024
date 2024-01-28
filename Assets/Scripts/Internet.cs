@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Internet : MonoBehaviour
 {
+    
+    [SerializeField] AudioClip wiiiSound;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +21,13 @@ public class Internet : MonoBehaviour
     
     private void OnTriggerEnter(Collider col)
     {
-        if (col.transform.tag == "Enemy")
-        {
+        /*if (col.transform.tag == "Enemy")
+        {*/
+            Debug.Log("sdaa");
+                
+            GetComponent<AudioSource>().clip = wiiiSound;
+            GetComponent<AudioSource>().Play();
             Manager.memeScaped();
-        }
+        /*}*/
     }
 }

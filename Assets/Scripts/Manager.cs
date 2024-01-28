@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Manager : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class Manager : MonoBehaviour
         }
         
         //Menu condition
-        if (stage.Equals(STAGE.WIN) || stage.Equals(STAGE.LOSE) && Input.GetKeyDown("space")) {
+        if ((stage.Equals(STAGE.WIN) || stage.Equals(STAGE.LOSE)) && Input.GetKeyDown("space")) {
             Menu();
         }
 
@@ -108,6 +109,8 @@ public class Manager : MonoBehaviour
         {
             Application.Quit();
         }
+        
+        Debug.Log(stage);
     }
     
     IEnumerator SpawnCoroutine()
@@ -132,6 +135,7 @@ public class Manager : MonoBehaviour
     public static void memeScaped()
     {
         memeScapeCount++;
+        Debug.Log(memeScapeCount);
     }
 
     public static void notifyDead()
@@ -142,6 +146,9 @@ public class Manager : MonoBehaviour
 
     private void Win()
     {
+        //StartCoroutine(CoUpdate());
+        Invoke("aa", 0.5f);
+        
         stage = STAGE.WIN;
         Debug.Log("Win");
         
@@ -151,6 +158,9 @@ public class Manager : MonoBehaviour
 
     private void Lose()
     {
+        //StartCoroutine(CoUpdate());
+        Invoke("aa", 0.5f);
+        
         stage = STAGE.LOSE;
         Debug.Log("Lose");
         
@@ -161,11 +171,25 @@ public class Manager : MonoBehaviour
     private void Menu()
     {
         stage = STAGE.MENU;
+
+        memeDeadCount = 0;
+        memeScapeCount = 0;
+        gameWasCreated = false;
         Debug.Log("Lose");
     }
 
     private void Create()
     {
+        
+        GameObject[] memes = GameObject.FindGameObjectsWithTag("Respawn");
+        if (memes.Length != 0)
+        {
+            foreach (var meme in memes)
+            {
+                Destroy(meme);
+            }
+        }
+
         stage = STAGE.GAME;
         
         GetComponent<AudioSource>().clip = GameSongLoop;
@@ -177,5 +201,15 @@ public class Manager : MonoBehaviour
             StartCoroutine(SpawnCoroutine());
             gameWasCreated = true;
         }
+    }
+
+
+    private void aa()
+    {
+        Debug.Log("aa");
+    }
+
+    IEnumerator CoUpdate (){
+        yield return new WaitForSeconds(1f);
     }
 }

@@ -33,9 +33,8 @@ public class EnemyController : MonoBehaviour
             GetComponent<AudioSource>().Play();
             GetComponent<AudioSource>().clip = pushSound;
             GetComponent<AudioSource>().Play();
-
+            
             Manager.notifyDead();
-            Manager.
             Destroy(gameObject);
             Instantiate(explosion, transform.position, transform.rotation);
         }
