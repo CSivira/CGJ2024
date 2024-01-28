@@ -77,6 +77,12 @@ public class Manager : MonoBehaviour
         {
             Win();
         }
+        
+        // Close Game
+        if (stage.Equals(STAGE.MENU) && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     
     IEnumerator SpawnCoroutine()
